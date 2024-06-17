@@ -58,7 +58,7 @@ def test(model: nn.Module,
     macro_recall_score = np.array([x for x in recalls.values()]).mean()
     macro_accuracy_score = np.array([x for x in accuracies.values()]).mean()
     macro_auc_score = np.array([x for x in roc_auc_scores.values()]).mean()
-    wandb.log({"test_loss": running_loss})
+    wandb.log({f'{prefix}-loss': running_loss})
     wandb.log(f1_scores)
     wandb.log(precisions)
     wandb.log(recalls)
