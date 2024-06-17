@@ -69,4 +69,4 @@ def test(model: nn.Module,
     wandb.log({f'{prefix}-macro-accuracy': macro_accuracy_score})
     wandb.log({f'{prefix}-macro-auc': macro_auc_score})
     print(f"Testing Loss: {running_loss:.4f}")
-    return running_loss, f1_scores, precisions, recalls, accuracies, roc_auc_scores
+    return running_loss
