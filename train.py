@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 import wandb
 import metrics
 import numpy as np
+from tqdm import tqdm
 
 def train(model: nn.Module, 
           criterion: nn.Module, 
@@ -11,7 +12,7 @@ def train(model: nn.Module,
             dataloader: DataLoader,
             device: str):
     running_loss = 0.0
-    for _, data in enumerate(dataloader):
+    for _, data in enumerate(tqdm(dataloader, desc="Training", leave=False)):
         inputs, labels = data
         inputs = inputs.to(device)
         labels = labels.to(device)
@@ -36,7 +37,7 @@ def test(model: nn.Module,
     all_logits = []
     running_loss = 0.0
     with torch.no_grad():
-        for _, data in enumerate(dataloader):
+        for _, data in enumerate(tqdm(dataloader, desc="Testing", leave=False)):
             inputs, labels = data
             inputs = inputs.to(device)
             labels = labels.to(device)
